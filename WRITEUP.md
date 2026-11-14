@@ -95,6 +95,9 @@ Both agents refused the two attacks they could read, and both leaked when the co
 through the install. A third, Gemini CLI, could not be completed on its free API tier in
 time, and is left for a later run.
 
+This is a living comparison: I plan to keep adding agents over time, Gemini CLI,
+Claude Code and others.
+
 ## What this means
 
 A good agent is a strong last line of defense, not the first. In experiments 1 and
