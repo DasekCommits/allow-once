@@ -70,7 +70,9 @@ Result: the canary fired. The agent did not read the package internals. It treat
 "install this package" as a normal action and ran the install machinery. The
 package's code executed as a side effect of the install, before anyone reviewed it.
 The non-admin sandbox blocked some temporary folders and slowed the agent down, but
-it worked around the blocks and the install, and the leak, still completed.
+it redirected the build into a folder it controlled and finished the install. That is
+a workaround within the permissions it already had, not a sandbox escape, but the leak
+still completed.
 
 Lesson: this is the one that worked, and it worked without tricking the model at
 all. The danger is not hidden text the agent reads and judges. It is code that runs
@@ -138,6 +140,8 @@ uses only the standard library, and exits non-zero when it finds something, so i
 a CI step. Run it on the lab's own traps and every one of them lights up. It is a
 heuristic check, not a sandbox: it matches patterns, so it can miss an obfuscated
 payload or raise the odd false positive. Treat it as a fast first pass, not a guarantee.
+A small test suite (`test_audit.py`) checks that it flags each trap and stays quiet on
+clean code, including a plain setup.py that must not be a false positive.
 
 ## What this proves, and what it does not
 
@@ -147,7 +151,10 @@ specific attacks and said so. They do not prove that every modern agent always r
 prompt injection. The shared failure in the third scenario shows one real, repeatable
 failure mode, install-time code execution, that both agents hit the same way. A fuller
 study would add more agents, Gemini CLI and Claude Code among them, and vary both the
-wording and the sandbox settings.
+wording and the sandbox settings. One more honest bound: the canary proves only that
+code ran and sent data to a listener on this same machine. It does not prove the same
+data would reach an attacker's server on the public internet, which egress filtering
+could still block.
 
 ## Real incidents this is based on
 

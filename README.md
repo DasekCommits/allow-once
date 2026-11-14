@@ -135,6 +135,12 @@ python audit.py scenarios/03-malicious-install/pkg
 
 It exits with code 1 when it finds something, so it also works as a CI check.
 
+A small test suite checks that it flags each trap and stays quiet on clean code:
+
+```
+python test_audit.py
+```
+
 ---
 
 © 2026 Filippos Ntasek. All rights reserved.
