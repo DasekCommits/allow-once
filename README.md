@@ -114,6 +114,27 @@ install.
 The lesson: the "Allow" that matters most is not "read this file". It is "yes, install
 that", "yes, run that script". See [WRITEUP.md](WRITEUP.md) for the defenses.
 
+## The audit tool
+
+`audit.py` scans a folder for the same risks before you let an agent work in it:
+hidden instructions aimed at an agent, code that runs on install, secret files an
+agent could leak, permission bypass flags, and network calls in build scripts. It
+is read-only and uses only the standard library.
+
+```
+python audit.py path/to/repo
+```
+
+Run it on the lab's own traps and it lights up:
+
+```
+python audit.py scenarios/01-poisoned-readme/victim-repo
+python audit.py scenarios/02-trusted-setup/victim-repo
+python audit.py scenarios/03-malicious-install/pkg
+```
+
+It exits with code 1 when it finds something, so it also works as a CI check.
+
 ---
 
 © 2026 Filippos Ntasek. All rights reserved.

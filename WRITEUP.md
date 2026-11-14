@@ -112,6 +112,16 @@ For anyone using an AI coding agent day to day:
 - Run the agent inside its sandbox. It will not stop everything, but it adds friction
   and buys you time to notice.
 
+## A tool to catch this
+
+Reading every file by hand does not scale, so the lab ships a small scanner,
+`audit.py` (project name `agent-exposure-audit`). You point it at a folder before you
+let an agent work in it, and it flags the same five risks the experiments showed:
+hidden instructions aimed at an agent, code that runs on install, secret files in the
+tree, permission bypass flags, and network calls in build scripts. It is read-only,
+uses only the standard library, and exits non-zero when it finds something, so it fits
+a CI step. Run it on the lab's own traps and every one of them lights up.
+
 ## Real incidents this is based on
 
 - Replit agent deleted a production database during a code freeze (July 2025).
