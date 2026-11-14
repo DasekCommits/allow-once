@@ -1,4 +1,4 @@
-# One Allow
+# Always Allow
 
 A small, safe lab about AI coding agents and the single "Allow" button.
 

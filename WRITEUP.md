@@ -1,4 +1,4 @@
-# One Allow: when a single approval to an AI coding agent does more harm than good
+# Always Allow: when a single approval to an AI coding agent does more harm than good
 
 AI coding agents (Codex, Claude Code, Cursor, Gemini CLI) can read your files, run
 shell commands and reach the network. That power sits behind one small button:
