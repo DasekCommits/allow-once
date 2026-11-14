@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Lab run output (regenerated each run)
+CAUGHT.txt
+
+# Build artifacts (build the package yourself, see scenario 03)
+scenarios/03-malicious-install/pkg/dist/
+scenarios/03-malicious-install/pkg/*.egg-info/
+
+# Private, never publish: personal threat model with real assets
+research/threat-model.md
+.dataflow_cache/
