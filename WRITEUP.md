@@ -120,7 +120,19 @@ let an agent work in it, and it flags the same five risks the experiments showed
 hidden instructions aimed at an agent, code that runs on install, secret files in the
 tree, permission bypass flags, and network calls in build scripts. It is read-only,
 uses only the standard library, and exits non-zero when it finds something, so it fits
-a CI step. Run it on the lab's own traps and every one of them lights up.
+a CI step. Run it on the lab's own traps and every one of them lights up. It is a
+heuristic check, not a sandbox: it matches patterns, so it can miss an obfuscated
+payload or raise the odd false positive. Treat it as a fast first pass, not a guarantee.
+
+## What this proves, and what it does not
+
+These are three runs against one agent, Codex (GPT-6.1-Sol), not a survey. The two
+refusals show that this agent, in this version, caught these specific attacks and said
+so. They do not prove that every modern agent always resists prompt injection. The
+third run shows one real failure mode, install-time code execution, not that every
+agent fails the same way. A fuller study would repeat the same scenarios across Claude
+Code, Cursor and Gemini CLI, and vary both the wording and the sandbox settings. That
+comparison is the natural next step.
 
 ## Real incidents this is based on
 
